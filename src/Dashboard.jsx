@@ -113,7 +113,7 @@ export default function DiscordDashboard() {
                         <p className="text-xs text-gray-400">{mod.desc}</p>
                       </div>
                       <div className="flex justify-end pt-4 mt-4 border-t border-gray-800">
-                        <button className="text-xs font-semibold text-pink-400 bg-pink-500/10 px-4 py-2 rounded-xl hover:bg-pink-500/20 transition">ตั้งค่าระบบ</button>
+                        <button type="button" className="text-xs font-semibold text-pink-400 bg-pink-500/10 px-4 py-2 rounded-xl hover:bg-pink-500/20 transition">ตั้งค่าระบบ</button>
                       </div>
                     </div>
                   ))}
@@ -156,4 +156,3 @@ export default function DiscordDashboard() {
 
                   <div>
                     <label className="block text-xs font-semibold text-gray-400 mb-1.5">เหตุผล</label>
-                    <textarea rows="3" value={modReason} onChange={(e) => setModReason(e.target.value)} placeholder="ระบุเหตุผลการลงโทษ..." className="w-full bg-[#12131a] px-4 py-2.5 rounded-xl border border-gray-800 text-sm text-white focus:outline-none focus:border-pink-500" />
