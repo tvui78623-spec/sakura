@@ -134,7 +134,7 @@ export default function DiscordDashboard() {
                     <label className="block text-xs font-semibold text-gray-400 mb-1.5">รูปแบบการลงโทษ</label>
                     <div className="grid grid-cols-3 gap-3">
                       {['timeout', 'kick', 'ban'].map(action => (
-                        <button key={action} onClick={() => setModAction(action)} className={`p-3 rounded-xl border text-xs font-medium uppercase transition ${modAction === action ? 'border-pink-500 text-pink-400 bg-pink-500/5' : 'bg-[#12131a] border-gray-800 text-gray-400 hover:bg-gray-800'}`}>
+                        <button key={action} type="button" onClick={() => setModAction(action)} className={`p-3 rounded-xl border text-xs font-medium uppercase transition ${modAction === action ? 'border-pink-500 text-pink-400 bg-pink-500/5' : 'bg-[#12131a] border-gray-800 text-gray-400 hover:bg-gray-800'}`}>
                           {action}
                         </button>
                       ))}
