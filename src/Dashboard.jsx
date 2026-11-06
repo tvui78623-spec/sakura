@@ -147,12 +147,66 @@ export default function DiscordDashboard() {
                       <select value={timeoutDuration} onChange={(e) => setTimeoutDuration(e.target.value)} className="w-full bg-[#12131a] px-4 py-2.5 rounded-xl border border-gray-800 text-sm text-white focus:outline-none focus:border-pink-500">
                         <option value="60">60 วินาที</option>
                         <option value="300">5 นาที</option>
-                        <option value="3600">1 ชั่วโมง</option>
-                        <option value="86400">1 วัน</option>
-                        <option value="604800">1 สัปดาห์</option>
-                      </select>
-                    </div>
-                  )}
-
-                  <div>
+                                         <div>
                     <label className="block text-xs font-semibold text-gray-400 mb-1.5">เหตุผล</label>
+                    <textarea rows="3" value={modReason} onChange={(e) => setModReason(e.target.value)} placeholder="ระบุเหตุผลการลงโทษ..." className="w-full bg-[#12131a] px-4 py-2.5 rounded-xl border border-gray-800 text-sm text-white focus:outline-none focus:border-pink-500" />
+                  </div>
+                  
+                  <button type="button" onClick={() => alert('ดำเนินการเสร็จสิ้น!')} className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold py-3 px-4 rounded-xl text-sm shadow-md hover:from-pink-600 hover:to-purple-700 transition mt-2">
+                    ดำเนินการส่งข้อมูล
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* TAB: Role Rewards */}
+            {activeTab === 'role-rewards' && (
+              <div className="max-w-3xl bg-[#1a1b26]/90 border border-gray-800 rounded-2xl p-6 backdrop-blur-xs">
+                <h2 className="text-xl font-bold text-white mb-2">🏅 ระบบจัดการปุ่มกดแจกยศจำนวนมาก</h2>
+                <p className="text-xs text-gray-400 mb-6">ตั้งค่าปุ่มสำหรับแจกยศให้สมาชิกเลือกกดรับเองบนเซิร์ฟเวอร์</p>
+                
+                {/* ส่วนเพิ่มยศใหม่ */}
+                <div className="bg-[#12131a] p-4 rounded-xl border border-gray-800 mb-6 flex flex-col sm:flex-row gap-4 items-end">
+                  <div className="flex-1 w-full">
+                    <label className="block text-xs font-semibold text-gray-400 mb-1.5">ชื่อยศใหม่</label>
+                    <input type="text" value={newRoleName} onChange={(e) => setNewRoleName(e.target.value)} placeholder="เช่น ประกาศข่าว 📢" className="w-full bg-[#161722] px-4 py-2 rounded-xl border border-gray-800 text-sm text-white focus:outline-none" />
+                  </div>
+                  <div className="w-full sm:w-32">
+                    <label className="block text-xs font-semibold text-gray-400 mb-1.5">สียศ</label>
+                    <div className="flex gap-2 items-center bg-[#161722] px-3 py-1.5 rounded-xl border border-gray-800">
+                      <input type="color" value={newRoleColor} onChange={(e) => setNewRoleColor(e.target.value)} className="w-8 h-7 bg-transparent border-0 cursor-pointer" />
+                      <span className="text-xs font-mono uppercase text-gray-300">{newRoleColor}</span>
+                    </div>
+                  </div>
+                  <button type="button" onClick={handleAddRole} className="w-full sm:w-auto bg-pink-500 text-white font-semibold px-6 py-2 rounded-xl text-sm hover:bg-pink-600 transition">
+                    เพิ่มปุ่มยศ
+                  </button>
+                </div>
+
+                {/* รายการยศที่มีอยู่ */}
+                <div className="space-y-3">
+                  <label className="block text-xs font-semibold text-gray-400">รายการปุ่มยศในระบบปัจจุบัน</label>
+                  {roles.map((role) => (
+                    <div key={role.id} className="flex items-center justify-between p-3.5 bg-[#161722] border border-gray-800 rounded-xl">
+                      <div className="flex items-center gap-3">
+                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: role.color }} />
+                        <span className="text-sm font-medium text-white">{role.name}</span>
+                        <span className="text-xs text-gray-500 bg-[#1a1b26] px-2 py-0.5 rounded-xs">สมาชิกที่ติดยศนี้อยู่: {role.count} คน</span>
+                      </div>
+                      <button type="button" onClick={() => handleRemoveRole(role.id)} className="text-xs text-red-400 bg-red-500/10 px-3 py-1.5 rounded-xl hover:bg-red-500/20 transition">
+                        ลบออก
+                      </button>
+                    </div>
+                  ))}
+                  {roles.length === 0 && (
+                    <p className="text-sm text-gray-500 text-center py-6">ไม่มีรายการปุ่มยศ กรุณาเพิ่มข้อมูลด้านบน</p>
+                  )}
+                </div>
+              </div>
+            )}
+          </main>
+        </div>
+      </div>
+    </div>
+  );
+}
